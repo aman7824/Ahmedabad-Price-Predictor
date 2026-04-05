@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ahmedabad House Price Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>🏠 Ahmedabad Price Predictor</h1>
+    <form method="post" action="/predict">
+        {% for col, encoder in options.items() %}
+        <label>{{col}}</label>
+        <select name="{{col}}">
+            {% for val in encoder.classes_ %}
+            <option value="{{val}}">{{val}}</option>
+            {% endfor %}
+        </select>
+        {% endfor %}
+
+        <input type="number" name="value_area" placeholder="Area">
+        <input type="number" name="floor" placeholder="Floor">
+        <input type="number" name="price_sqft" placeholder="Price per sqft">
+
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+    <h2>Estimated Price: ₹ {{prediction}}</h2>
+
+    <canvas id="chart"></canvas>
+    <script>
+        var ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Prediction'],
+                datasets: [{
+                    label: 'Price',
+                    data: [{{prediction}}],
+                }]
+            }
+        });
+    </script>
+    {% endif %}
+</div>
+</body>
+</html>
