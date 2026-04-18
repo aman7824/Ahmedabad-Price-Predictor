@@ -3,6 +3,7 @@
 A machine learning-based web application that predicts house prices in Ahmedabad based on various input features like location, area (sq ft), number of bedrooms (BHK), bathrooms, and more.
 
 ---
+![Images](C:\Users\BAPS\OneDrive\Pictures\Screenshots\Screenshot (103))
 
 ## 📌 Features
 - 📍 Area-wise price prediction (Ahmedabad specific)
